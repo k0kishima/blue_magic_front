@@ -1,20 +1,14 @@
 import React from "react";
-import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Switch from "@material-ui/core/Switch";
 import styled from "styled-components";
-import { RootState } from "store/store";
-import { useSelector } from "react-redux";
-
-const selector = ({ setting }: RootState) => ({
-  setting: setting,
-});
+import { useGetSettingsQuery } from "services/settings";
 
 export const SettingsPage: React.VFC = () => {
-  const { setting } = useSelector(selector);
+  const { data, error, isLoading } = useGetSettingsQuery({});
 
   const Styled = styled.div`
     fieldset {
@@ -25,36 +19,33 @@ export const SettingsPage: React.VFC = () => {
 
   return (
     <Styled>
-      <FormControl component="fieldset">
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                name="gilad"
-                color="primary"
-                checked={setting.voting_enable}
-              />
-            }
-            label="自動投票"
-          />
-        </FormGroup>
-        <FormHelperText>Be careful</FormHelperText>
-      </FormControl>
-      <FormControl component="fieldset">
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                name="gilad"
-                color="primary"
-                checked={setting.crawling_enable}
-              />
-            }
-            label="クローラー稼働"
-          />
-        </FormGroup>
-        <FormHelperText>Be careful</FormHelperText>
-      </FormControl>
+      {error ? (
+        <h1>エラー</h1>
+      ) : isLoading ? (
+        <h1>Loading...</h1>
+      ) : data ? (
+        <>
+          {data.settings.map(
+            (item: { var: string; value: boolean }, i: number) => (
+              <FormControl key={i} component="fieldset">
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        name="gilad"
+                        color="primary"
+                        checked={item.value}
+                      />
+                    }
+                    label={item.var}
+                  />
+                </FormGroup>
+                <FormHelperText>Be careful</FormHelperText>
+              </FormControl>
+            )
+          )}
+        </>
+      ) : null}
     </Styled>
   );
 };
