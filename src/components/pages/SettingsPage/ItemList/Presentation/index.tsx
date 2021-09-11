@@ -1,26 +1,16 @@
 import React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Switch from "@material-ui/core/Switch";
 import styled from "styled-components";
+import { ItemContainer } from "components/pages/SettingsPage/Item";
 
-type ItemListProps = {
+type Props = {
   settings: [];
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-type ItemProps = {
-  name: string;
-  value: boolean;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-export const ItemList: React.FC<ItemListProps> = ({
+export const ItemList: React.FC<Props> = ({
   settings,
   handleChange,
-}: ItemListProps) => {
+}: Props) => {
   const Styled = styled.div`
     fieldset {
       display: block;
@@ -31,7 +21,7 @@ export const ItemList: React.FC<ItemListProps> = ({
   return (
     <Styled>
       {settings.map((item: { var: string; value: boolean }, i: number) => (
-        <Item
+        <ItemContainer
           handleChange={handleChange}
           key={i}
           name={item.var}
@@ -39,30 +29,5 @@ export const ItemList: React.FC<ItemListProps> = ({
         />
       ))}
     </Styled>
-  );
-};
-
-export const Item: React.FC<ItemProps> = ({
-  name,
-  value,
-  handleChange,
-}: ItemProps) => {
-  return (
-    <FormControl component="fieldset">
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              name={name}
-              color="primary"
-              checked={value}
-              onChange={handleChange}
-            />
-          }
-          label={name}
-        />
-      </FormGroup>
-      <FormHelperText>Be careful</FormHelperText>
-    </FormControl>
   );
 };
