@@ -4,6 +4,7 @@ import {
   useUpdateSettingsMutation,
 } from "services/settings";
 import { ItemList } from "../Presentation";
+import { Loading } from "components/shared/Loading";
 
 export const ItemListContainer: React.VFC = () => {
   const { data, error, isLoading } = useGetSettingsQuery({});
@@ -18,7 +19,7 @@ export const ItemListContainer: React.VFC = () => {
       {error ? (
         <h1>エラー</h1>
       ) : isLoading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : data ? (
         <ItemList settings={data.settings} handleChange={handleChange} />
       ) : null}
