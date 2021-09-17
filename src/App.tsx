@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { DashboardContainer } from "containers/DashboardContainer";
+import { DashboardPage } from "components/pages/DashboardPage";
 import { SettingsPage } from "components/pages/SettingsPage";
 
 export const App: React.VFC = () => {
@@ -9,7 +9,7 @@ export const App: React.VFC = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {DashboardContainer}
+            {DashboardPage}
           </Route>
           <Route path="/settings">{SettingsPage}</Route>
         </Switch>
