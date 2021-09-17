@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutContainer } from "containers/LayoutContainer";
+import { LayoutContainer } from "components/shared/Layout";
 
 export const DashboardContainer: React.VFC = () => {
   return (
