@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { DashboardPage } from "components/pages/DashboardPage";
 import { SettingsPage } from "components/pages/SettingsPage";
+import { LoginPage } from "components/pages/LoginPage";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
@@ -15,6 +16,7 @@ export const App: React.VFC = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
+          <Route path="/login">{LoginPage}</Route>
           <Route exact path="/">
             {DashboardPage}
           </Route>
