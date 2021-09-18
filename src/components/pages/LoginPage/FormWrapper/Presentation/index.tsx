@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "components/pages/LoginPage/Form";
+import { FormContainer } from "components/pages/LoginPage/Form";
 import styled from "styled-components";
 
 export const FormWrapper: React.VFC = () => {
@@ -12,7 +12,7 @@ export const FormWrapper: React.VFC = () => {
 
   return (
     <Styled>
-      <Form />
+      <FormContainer />
     </Styled>
   );
 };
