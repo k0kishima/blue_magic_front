@@ -2,6 +2,27 @@
 
 - [blue_magic](https://github.com/k0kishima/blue_magic]) の管理画面
 
+## 環境構築手順
+
+### IdPへのクライアント(RP)登録
+
+認証にOAuth2.0/OIDCを利用しているので、IdPと接続する必要がある
+
+上記標準仕様に準拠していてURIやパラメータなどのインターフェースが同じならなんでもいいが、ここでは以下を利用する
+https://github.com/k0kishima/openid-provider
+
+### 本サービスの起動
+
+環境変数にはIdP自体のURLや、前節でクライアント登録を行ったときに払い出されたクライアントID (UID) を設定する
+
+```bash
+$ git clone git@github.com:k0kishima/blue_magic_front.git
+$ cp .env.example .env
+$ vi .env
+$ yarn install
+$ yarn start
+```
+
 ## 機能
 
 - システム設定
